@@ -1,14 +1,18 @@
 import { useCallback, useState } from "react";
 import { List } from "./List";
+import { useFruitStore } from "./store";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const fruit = useFruitStore((state) => state.name);
+  const quantity = useFruitStore((state) => state.quantity);
+  const increase = useFruitStore((state) => state.increase);
 
   return (
     <div className="App">
-      <button onClick={() => setCount((count) => count + 1)}>
-        count is {count}
-      </button>
+      <div>
+        {fruit}: Quantity is {quantity}
+      </div>
+      <button onClick={() => increase(10)}>Add some more</button>
     </div>
   );
 }
